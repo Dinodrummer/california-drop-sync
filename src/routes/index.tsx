@@ -20,6 +20,8 @@ function Landing() {
       <Hero />
       <Logos />
       <HowItWorks />
+      <Comparison />
+      <Testimonials />
       <Stats />
       <FAQ />
       <CTA />
@@ -148,6 +150,72 @@ function HowItWorks() {
             <div className="mt-4 font-display text-lg font-semibold">{s.title}</div>
             <p className="mt-2 text-sm text-muted-foreground">{s.body}</p>
           </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Comparison() {
+  const rows = [
+    ["DROP platform polling", "Manual checks", "Automated every 15 min"],
+    ["Time to propagate a deletion", "Days–weeks", "Minutes"],
+    ["Audit trail", "Spreadsheets", "Immutable, exportable"],
+    ["DPO sign-off workflow", "Email threads", "Built-in"],
+    ["Risk of $7,500 penalty", "High", "Eliminated"],
+  ];
+  return (
+    <section className="border-y border-border/60 bg-card/40 py-20">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="font-display text-3xl font-bold md:text-4xl">DIY compliance vs. DROP-Sync</h2>
+          <p className="mt-3 text-muted-foreground">The same legal requirement. A radically different operational cost.</p>
+        </div>
+        <div className="surface-card mt-10 overflow-hidden rounded-2xl">
+          <table className="w-full text-sm">
+            <thead className="bg-muted/50 text-xs uppercase tracking-wider text-muted-foreground">
+              <tr>
+                <th className="px-5 py-3 text-left font-medium">Capability</th>
+                <th className="px-5 py-3 text-left font-medium">In-house</th>
+                <th className="px-5 py-3 text-left font-medium">DROP-Sync</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {rows.map(([cap, diy, ds]) => (
+                <tr key={cap}>
+                  <td className="px-5 py-3.5 font-medium">{cap}</td>
+                  <td className="px-5 py-3.5 text-muted-foreground">{diy}</td>
+                  <td className="px-5 py-3.5"><span className="rounded-full bg-success/15 px-2 py-0.5 text-xs font-medium text-success">{ds}</span></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Testimonials() {
+  const quotes = [
+    { q: "We turned a 6-month compliance scramble into a 3-minute setup. Our DPO sleeps now.", a: "Priya R.", r: "DPO, 200-person fintech" },
+    { q: "The audit log alone justified the price. We exported a quarter of evidence in two clicks.", a: "Marcus L.", r: "GC, e-commerce brand" },
+    { q: "Our Mailchimp + HubSpot deletions used to live in a spreadsheet. Now they just… happen.", a: "Sasha K.", r: "Head of Privacy, SaaS" },
+  ];
+  return (
+    <section className="mx-auto max-w-7xl px-6 py-24">
+      <div className="mx-auto max-w-2xl text-center">
+        <h2 className="font-display text-3xl font-bold md:text-4xl">Trusted by privacy teams shipping under deadline.</h2>
+      </div>
+      <div className="mt-12 grid gap-6 md:grid-cols-3">
+        {quotes.map((t) => (
+          <figure key={t.a} className="surface-card flex flex-col rounded-2xl p-6">
+            <blockquote className="font-display text-base leading-relaxed">“{t.q}”</blockquote>
+            <figcaption className="mt-5 border-t border-border pt-4 text-sm">
+              <div className="font-medium">{t.a}</div>
+              <div className="text-xs text-muted-foreground">{t.r}</div>
+            </figcaption>
+          </figure>
         ))}
       </div>
     </section>
