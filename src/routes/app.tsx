@@ -140,8 +140,7 @@ function seedDeleteRequests(userId: string) {
   const day = 86_400_000;
   const providers = ["mailchimp", "shopify", "hubspot"] as const;
   return Array.from({ length: 12 }).map((_, i) => {
-    const status =
-      i < 7 ? "completed" : i < 10 ? "queued" : i === 10 ? "processing" : "failed";
+    const status = (i < 7 ? "completed" : i < 10 ? "queued" : i === 10 ? "processing" : "failed") as "completed" | "queued" | "processing" | "failed";
     return {
       user_id: userId,
       subject_email: `consumer${1000 + i}@example.com`,
