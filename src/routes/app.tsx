@@ -63,8 +63,6 @@ function AppLayout() {
     );
   }
 
-  return (
-    <div className="grid min-h-screen md:grid-cols-[260px_1fr]">
   const SidebarBody = (
     <>
       <div className="flex h-16 items-center gap-2 border-b border-sidebar-border px-5">
