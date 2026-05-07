@@ -90,6 +90,19 @@ function Settings() {
         <p className="mt-1 text-sm text-muted-foreground">Current plan: <span className="font-medium capitalize text-foreground">{plan}</span></p>
         <a href="/pricing" className="mt-3 inline-flex h-9 items-center rounded-md border border-border bg-card px-4 text-sm">Manage plan</a>
       </div>
+
+      <div className="surface-card rounded-xl border-l-2 border-l-mint/60 p-6">
+        <h2 className="font-display text-lg font-semibold">Limitation of Liability</h2>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+          California DROP-Sync acts as a compliance facilitator between your organization and third-party
+          platforms (Mailchimp, Shopify, HubSpot, and the California DROP registry). To the maximum extent
+          permitted by law, <span className="font-medium text-foreground">JT Inc. is not liable for third-party
+          API failures, outages, or rejected deletion requests beyond the cost of the monthly subscription</span>
+          paid in the billing cycle in which the failure occurred. You remain the data controller of record
+          under SB 362 and retain ultimate responsibility for verifying deletion completion. Full terms are
+          available in the <a href="/terms" className="underline underline-offset-2">Terms of Service</a>.
+        </p>
+      </div>
     </div>
   );
 }
