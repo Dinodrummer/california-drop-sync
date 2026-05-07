@@ -29,6 +29,19 @@ function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [resetting, setResetting] = useState(false);
+
+  async function forgot() {
+    const parsed = z.string().trim().email().safeParse(email);
+    if (!parsed.success) return toast.error("Enter your email above first");
+    setResetting(true);
+    const { error } = await supabase.auth.resetPasswordForEmail(parsed.data, {
+      redirectTo: `${window.location.origin}/reset-password`,
+    });
+    setResetting(false);
+    if (error) toast.error(error.message);
+    else toast.success("Reset link sent", { description: "Check your inbox." });
+  }
 
   useEffect(() => {
     if (!authLoading && user) navigate({ to: "/app" });
@@ -120,6 +133,16 @@ function AuthPage() {
                 className="mt-1.5 h-11 w-full rounded-md border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                 placeholder="At least 8 characters"
               />
+              {mode === "signin" && (
+                <button
+                  type="button"
+                  onClick={forgot}
+                  disabled={resetting}
+                  className="mt-2 text-xs text-muted-foreground underline hover:text-foreground disabled:opacity-50"
+                >
+                  {resetting ? "Sending…" : "Forgot password?"}
+                </button>
+              )}
             </div>
             <button
               type="submit"
