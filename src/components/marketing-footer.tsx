@@ -23,7 +23,7 @@ export function MarketingFooter() {
         <FCol title="Product">
           <FLink to="/pricing">Pricing</FLink>
           <FLink to="/security">Security & trust</FLink>
-          <FLink to="/auth" search={{ mode: "signup" }}>Start free</FLink>
+          <Link to="/auth" search={{ mode: "signup" }} className="text-sm text-muted-foreground hover:text-foreground">Start free</Link>
         </FCol>
 
         <FCol title="Company">
