@@ -14,7 +14,135 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      audit_logs: {
+        Row: {
+          action: string
+          actor: string
+          created_at: string
+          id: string
+          message: string | null
+          status: string
+          target: string | null
+          user_id: string
+        }
+        Insert: {
+          action: string
+          actor: string
+          created_at?: string
+          id?: string
+          message?: string | null
+          status?: string
+          target?: string | null
+          user_id: string
+        }
+        Update: {
+          action?: string
+          actor?: string
+          created_at?: string
+          id?: string
+          message?: string | null
+          status?: string
+          target?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      delete_requests: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          id: string
+          scheduled_for: string
+          source: Database["public"]["Enums"]["integration_provider"]
+          status: Database["public"]["Enums"]["delete_status"]
+          subject_email: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          scheduled_for?: string
+          source: Database["public"]["Enums"]["integration_provider"]
+          status?: Database["public"]["Enums"]["delete_status"]
+          subject_email: string
+          user_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          scheduled_for?: string
+          source?: Database["public"]["Enums"]["integration_provider"]
+          status?: Database["public"]["Enums"]["delete_status"]
+          subject_email?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      integrations: {
+        Row: {
+          api_key: string
+          created_at: string
+          id: string
+          last_sync: string | null
+          provider: Database["public"]["Enums"]["integration_provider"]
+          status: Database["public"]["Enums"]["integration_status"]
+          user_id: string
+        }
+        Insert: {
+          api_key: string
+          created_at?: string
+          id?: string
+          last_sync?: string | null
+          provider: Database["public"]["Enums"]["integration_provider"]
+          status?: Database["public"]["Enums"]["integration_status"]
+          user_id: string
+        }
+        Update: {
+          api_key?: string
+          created_at?: string
+          id?: string
+          last_sync?: string | null
+          provider?: Database["public"]["Enums"]["integration_provider"]
+          status?: Database["public"]["Enums"]["integration_status"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          company_name: string | null
+          created_at: string
+          dpo_email: string | null
+          dpo_name: string | null
+          id: string
+          onboarded: boolean
+          plan: string
+          updated_at: string
+        }
+        Insert: {
+          company_name?: string | null
+          created_at?: string
+          dpo_email?: string | null
+          dpo_name?: string | null
+          id: string
+          onboarded?: boolean
+          plan?: string
+          updated_at?: string
+        }
+        Update: {
+          company_name?: string | null
+          created_at?: string
+          dpo_email?: string | null
+          dpo_name?: string | null
+          id?: string
+          onboarded?: boolean
+          plan?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +151,9 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      delete_status: "queued" | "processing" | "completed" | "failed"
+      integration_provider: "mailchimp" | "shopify" | "hubspot"
+      integration_status: "connected" | "error" | "disconnected"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +280,10 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      delete_status: ["queued", "processing", "completed", "failed"],
+      integration_provider: ["mailchimp", "shopify", "hubspot"],
+      integration_status: ["connected", "error", "disconnected"],
+    },
   },
 } as const
